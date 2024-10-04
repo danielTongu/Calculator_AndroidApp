@@ -1,0 +1,75 @@
+<!-- res/values/styles.xml -->
+<resources>
+
+    <!-- Base Style for Numeric Buttons -->
+    <style name="NumericButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:backgroundTint">#8A8B8B</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!-- Operator Buttons -->
+    <style name="OperatorButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:backgroundTint">#E67E22</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!-- All Clear Button -->
+    <style name="ClearButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:backgroundTint">#337DFF</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!-- All Clear Button -->
+    <style name="ClearAllButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:backgroundTint">#FF3377</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!-- Special Style for Decimal and Toggle Sign (+/-) Buttons -->
+    <style name="SpecialFunctionButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:backgroundTint">#46494B</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!-- Filler Button (empty button for spacing) -->
+    <style name="FillerButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:backgroundTint">#EEEEEE</item> <!-- Light background for fillers -->
+        <item name="android:enabled">false</item> <!-- Disabled filler buttons -->
+    </style>
+
+</resources>

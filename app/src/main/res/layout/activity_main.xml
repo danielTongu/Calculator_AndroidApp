@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B2D30"
+    tools:context=".MainActivity">
+
+    <!-- Empty Space (Spacer View) -->
+    <View
+        android:id="@+id/spacer_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Black Screen for Computation and Result -->
+    <LinearLayout
+        android:id="@+id/black_screen"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/black"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/spacer_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Computation Display -->
+        <TextView
+            android:id="@+id/computation_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:text="45345974"
+            android:textColor="@android:color/white"
+            android:textSize="25sp" />
+
+        <!-- Result Display -->
+        <TextView
+            android:id="@+id/result_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="45345974"
+            android:textColor="#FF8033"
+            android:textSize="60sp" />
+    </LinearLayout>
+
+    <!-- GridLayout for Buttons -->
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/black_screen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:rowCount="6"
+        android:columnCount="4" >
+
+        <!-- Row 1: AC, C, and Filler Buttons -->
+        <Button android:id="@+id/buttonAC" style="@style/ClearAllButton" android:text="AC" />
+        <Button android:id="@+id/buttonC" style="@style/ClearButton" android:text="C" />
+        <Button style="@style/FillerButton" />
+        <Button style="@style/FillerButton" />
+
+        <!-- Row 2: %, (, ), / -->
+        <Button android:id="@+id/buttonPercentage" style="@style/OperatorButton" android:text="%" />
+        <Button android:id="@+id/buttonOpenBracket" style="@style/OperatorButton" android:text="(" />
+        <Button android:id="@+id/buttonCloseBracket" style="@style/OperatorButton" android:text=")" />
+        <Button android:id="@+id/buttonDivide" style="@style/OperatorButton" android:text="÷" />
+
+        <!-- Row 3: 7, 8, 9, * -->
+        <Button android:id="@+id/button7" style="@style/NumericButton" android:text="7" />
+        <Button android:id="@+id/button8" style="@style/NumericButton" android:text="8" />
+        <Button android:id="@+id/button9" style="@style/NumericButton" android:text="9" />
+        <Button android:id="@+id/buttonMultiply" style="@style/OperatorButton" android:text="x" />
+
+        <!-- Row 4: 4, 5, 6, - -->
+        <Button android:id="@+id/button4" style="@style/NumericButton" android:text="4" />
+        <Button android:id="@+id/button5" style="@style/NumericButton" android:text="5" />
+        <Button android:id="@+id/button6" style="@style/NumericButton" android:text="6" />
+        <Button android:id="@+id/buttonSubtract" style="@style/OperatorButton" android:text="-" />
+
+        <!-- Row 5: 1, 2, 3, + -->
+        <Button android:id="@+id/button1" style="@style/NumericButton" android:text="1" />
+        <Button android:id="@+id/button2" style="@style/NumericButton" android:text="2" />
+        <Button android:id="@+id/button3" style="@style/NumericButton" android:text="3" />
+        <Button android:id="@+id/buttonAdd" style="@style/OperatorButton" android:text="+" />
+
+        <!-- Row 6: 0, ., +/- = -->
+        <Button android:id="@+id/button0" style="@style/NumericButton" android:text="0" />
+        <Button android:id="@+id/buttonDecimal" style="@style/SpecialFunctionButton" android:text="." android:textSize="50dp" />
+        <Button android:id="@+id/buttonToggleSign" style="@style/SpecialFunctionButton" android:text="+/-" />
+        <Button android:id="@+id/buttonEquals" style="@style/OperatorButton" android:text="=" />
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
