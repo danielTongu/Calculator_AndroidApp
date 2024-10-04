@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.TextView;
@@ -70,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle equals button
         findViewById(R.id.buttonEquals).setOnClickListener(v -> calculateResult());
 
-        // Handle special buttons
-        findViewById(R.id.buttonToggleSign).setOnClickListener(v -> toggleSign());
-        findViewById(R.id.buttonPercentage).setOnClickListener(v -> applyPercentage());
-
         // Clear buttons functionality
         findViewById(R.id.buttonAC).setOnClickListener(v -> {
             input.setLength(0);  // Clear input
@@ -135,46 +132,6 @@ public class MainActivity extends AppCompatActivity {
             input.append(operator);
             computationDisplay.setText(input.toString());
             lastInputIsOperator = true;  // Mark the last input as an operator
-        }
-    }
-
-    /**
-     * Toggles the sign of the current number in the computation (i.e., positive to negative or vice versa).
-     */
-    private void toggleSign() {
-        if (input.length() > 0 && !lastInputIsOperator) {
-            try {
-                // Get the last entered number, negate it, and update the input
-                String currentInput = input.toString();
-                double value = Double.parseDouble(currentInput);
-                value = value * -1;
-                input.setLength(0);  // Clear the input
-                input.append(value);  // Add the negated value
-                computationDisplay.setText(input.toString());
-            } catch (NumberFormatException e) {
-                // Handle invalid input: Display error message
-                computationDisplay.setText("Error");
-            }
-        }
-    }
-
-    /**
-     * Converts the current number into its percentage value by dividing it by 100.
-     */
-    private void applyPercentage() {
-        if (input.length() > 0 && !lastInputIsOperator) {
-            try {
-                // Parse the current input as a double and divide it by 100
-                String currentInput = input.toString();
-                double value = Double.parseDouble(currentInput);
-                value = value / 100;
-                input.setLength(0);  // Clear the input
-                input.append(value);  // Append the percentage result
-                computationDisplay.setText(input.toString());
-            } catch (NumberFormatException e) {
-                // Handle invalid input: Display error message
-                computationDisplay.setText("Error");
-            }
         }
     }
 
