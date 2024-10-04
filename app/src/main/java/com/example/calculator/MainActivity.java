@@ -9,6 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+/**
+ * MainActivity class represents the main screen of the calculator application.
+ * This activity handles user input for arithmetic operations, displays the input,
+ * computes results, and handles the display and button functionality.
+ *
+ * @author Daniel Tongu
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView computationDisplay;  // Displays the expression
@@ -21,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private final float MAX_TEXT_SIZE = 60f;
     private final float MIN_TEXT_SIZE = 20f;
 
+    /**
+     * Initializes the activity, sets up the layout, button click listeners, and
+     * initializes the display TextViews.
+     *
+     * @param savedInstanceState The saved state of the app instance.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Helper function to set up number button click listeners.
+     * Attaches a listener to a button and appends the corresponding number to the computation display.
+     *
+     * @param buttonId The resource ID of the button (e.g., R.id.button0).
+     * @param value The number to append when the button is clicked.
      */
     private void setNumberButtonClickListener(int buttonId, String value) {
         findViewById(buttonId).setOnClickListener(v -> appendToComputation(value));
@@ -89,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Appends numbers and decimal points to the computation display.
      * If a result was just displayed, the new input starts a new expression.
+     *
+     * @param value The number or decimal point to append to the display.
      */
     private void appendToComputation(String value) {
         if (lastResultDisplayed) {
@@ -102,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Appends operators to the computation display while preventing double operators.
+     * If the last input was a result, starts a new operation using that result.
+     *
+     * @param operator The operator to append to the display (e.g., +, -, *, /).
      */
     private void appendOperator(String operator) {
         if (input.length() > 0 && !lastInputIsOperator) {
@@ -117,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Toggles the sign of the current number in the computation.
+     * Toggles the sign of the current number in the computation (i.e., positive to negative or vice versa).
      */
     private void toggleSign() {
         if (input.length() > 0 && !lastInputIsOperator) {
@@ -130,13 +152,14 @@ public class MainActivity extends AppCompatActivity {
                 input.append(value);  // Add the negated value
                 computationDisplay.setText(input.toString());
             } catch (NumberFormatException e) {
-                // Handle invalid input
+                // Handle invalid input: Display error message
+                computationDisplay.setText("Error");
             }
         }
     }
 
     /**
-     * Converts the current number into its percentage value.
+     * Converts the current number into its percentage value by dividing it by 100.
      */
     private void applyPercentage() {
         if (input.length() > 0 && !lastInputIsOperator) {
@@ -149,7 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 input.append(value);  // Append the percentage result
                 computationDisplay.setText(input.toString());
             } catch (NumberFormatException e) {
-                // Handle invalid input
+                // Handle invalid input: Display error message
+                computationDisplay.setText("Error");
             }
         }
     }
@@ -175,7 +199,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Dynamically adjust the text size of the resultDisplay so it fits in one line.
+     * Dynamically adjusts the text size of the result display to fit within the width of the TextView.
+     *
+     * @param textView The TextView containing the result to be resized.
      */
     private void adjustTextSizeToFit(TextView textView) {
         int viewWidth = textView.getWidth();
