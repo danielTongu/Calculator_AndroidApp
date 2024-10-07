@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B2D30"
     android:textColor="@android:color/white"
-    android:layout_margin="1dp"
+    android:layout_margin=".3dp"
     tools:context=".MainActivity">
 
     <!-- Black Screen for Computation and Result -->
@@ -15,9 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="165dp"
         android:layout_margin="16dp"
-        android:gravity="end"
         android:orientation="vertical"
-        android:padding="10dp"
 
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,11 +26,10 @@
             android:id="@+id/computation_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="29dp"
             android:gravity="right|center_vertical"
             android:text="45345974"
             android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            android:textSize="34sp" />
 
         <!-- Result Display -->
         <TextView
@@ -40,9 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="DanielTongu"
+            android:text="Tongu"
             android:textColor="@android:color/white"
-            android:textSize="60sp" />
+            android:textSize="94sp" />
 
     </LinearLayout>
 
@@ -120,7 +117,7 @@
         <Button
             android:id="@+id/buttonSubtract"
             style="@style/OperatorButton"
-            android:text="-" />
+            android:text="–" />
 
         <!-- Row 5: 1, 2, 3, + -->
         <Button

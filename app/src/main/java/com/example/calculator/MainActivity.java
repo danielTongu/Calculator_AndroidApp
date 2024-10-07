@@ -3,6 +3,8 @@ package com.example.calculator;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,15 +21,15 @@ import net.objecthunter.exp4j.ExpressionBuilder;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private TextView computationDisplay;  // Displays the expression
-    private TextView resultDisplay;       // Displays the result
-    private StringBuilder input = new StringBuilder();  // Holds the user's input for the expression
+    // Max and min text sizes for the result
+    private final float MAX_TEXT_SIZE = 90f;
+    private final float MIN_TEXT_SIZE = 20f;
+    private final StringBuilder INPUT = new StringBuilder();  // Holds the user's input for the expression
     private boolean lastInputIsOperator = false;  // Prevents entering two consecutive operators
     private boolean lastResultDisplayed = false;  // Tracks if the result is being displayed
+    private TextView computationDisplay;  // Displays the expression
+    private TextView resultDisplay;       // Displays the result
 
-    // Max and min text sizes for the result
-    private final float MAX_TEXT_SIZE = 60f;
-    private final float MIN_TEXT_SIZE = 20f;
 
     /**
      * Initializes the activity, sets up the layout, button click listeners, and
@@ -73,18 +75,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Clear buttons functionality
         findViewById(R.id.buttonAC).setOnClickListener(v -> {
-            input.setLength(0);  // Clear input
+            INPUT.setLength(0);  // Clear input
             computationDisplay.setText("");  // Clear computation display
             resultDisplay.setText("0");  // Reset result to 0
             lastResultDisplayed = false;  // Reset flag
-            resultDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, MAX_TEXT_SIZE);  // Reset text size
+            // Adjust text size to fit result in one line
+            adjustTextSizeToFit(resultDisplay);
         });
 
         // Clear last entry button (C)
         findViewById(R.id.buttonC).setOnClickListener(v -> {
-            if (input.length() > 0) {
-                input.deleteCharAt(input.length() - 1);  // Remove the last character
-                computationDisplay.setText(input.toString());  // Update display
+            if (INPUT.length() > 0) {
+                INPUT.deleteCharAt(INPUT.length() - 1);  // Remove the last character
+                computationDisplay.setText(INPUT.toString());  // Update display
             }
         });
     }
@@ -108,11 +111,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private void appendToComputation(String value) {
         if (lastResultDisplayed) {
-            input.setLength(0);  // Clear the input if result was displayed
+            INPUT.setLength(0);  // Clear the input if result was displayed
             lastResultDisplayed = false;
         }
-        input.append(value);
-        computationDisplay.setText(input.toString());  // Update computation display
+        INPUT.append(value);
+        computationDisplay.setText(INPUT.toString());  // Update computation display
         lastInputIsOperator = false;  // Reset operator flag
     }
 
@@ -123,14 +126,14 @@ public class MainActivity extends AppCompatActivity {
      * @param operator The operator to append to the display (e.g., +, -, *, /).
      */
     private void appendOperator(String operator) {
-        if (input.length() > 0 && !lastInputIsOperator) {
+        if (INPUT.length() > 0 && !lastInputIsOperator) {
             if (lastResultDisplayed) {
-                input.setLength(0);  // Clear input to start new expression after result
-                input.append(resultDisplay.getText());  // Use result for next operation
+                INPUT.setLength(0);  // Clear input to start new expression after result
+                INPUT.append(resultDisplay.getText());  // Use result for next operation
                 lastResultDisplayed = false;
             }
-            input.append(operator);
-            computationDisplay.setText(input.toString());
+            INPUT.append(operator);
+            computationDisplay.setText(INPUT.toString());
             lastInputIsOperator = true;  // Mark the last input as an operator
         }
     }
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     private void calculateResult() {
         try {
             // Parse the input string as a mathematical expression using exp4j
-            String expression = input.toString();
+            String expression = INPUT.toString();
             Expression exp = new ExpressionBuilder(expression).build();
             double result = exp.evaluate();  // Evaluate the expression
             resultDisplay.setText(String.valueOf(result));  // Display the result
@@ -156,27 +159,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Dynamically adjusts the text size of the result display to fit within the width of the TextView.
+     * Dynamically adjusts the text size of the resultDisplay to fit within the width of the TextView.
+     * Ensures the text is always right-justified.
      *
-     * @param textView The TextView containing the result to be resized.
+     * @param textView The TextView containing the result to be resized and aligned.
      */
     private void adjustTextSizeToFit(TextView textView) {
-        int viewWidth = textView.getWidth();
-        String text = textView.getText().toString();
+        // Set the text to be right-aligned
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            // For Android versions above Jelly Bean MR1, use setTextAlignment
+            textView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END); // Ensures right alignment
+        } else {
+            // For older Android versions, use gravity
+            textView.setGravity(Gravity.RIGHT);
+        }
+
+        int viewWidth = textView.getWidth(); // Get the available width of the TextView
+        String text = textView.getText().toString(); // Get the text to be displayed
 
         // Start with the maximum text size
         float textSize = MAX_TEXT_SIZE;
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
 
-        // Measure the width of the text
+        // Measure the width of the text with the current text size
         textView.measure(0, 0);
         float textWidth = textView.getPaint().measureText(text);
 
         // Reduce the text size until it fits within the TextView's width or hits the minimum size
         while (textWidth > viewWidth && textSize > MIN_TEXT_SIZE) {
-            textSize -= 1;  // Reduce text size
+            textSize -= 1; // Decrease text size by 1sp
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-            textWidth = textView.getPaint().measureText(text);  // Recalculate text width
+            textWidth = textView.getPaint().measureText(text); // Recalculate text width
         }
     }
 }
