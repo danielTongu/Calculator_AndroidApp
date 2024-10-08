@@ -8,7 +8,7 @@
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textSize">45sp</item>
-        <item name="android:backgroundTint">#8A8B8B</item>
+        <item name="android:backgroundTint">#E67E22</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
     </style>
@@ -20,7 +20,7 @@
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textSize">50sp</item>
-        <item name="android:backgroundTint">#E67E22</item>
+        <item name="android:backgroundTint">#8A8B8B</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
     </style>
@@ -32,7 +32,7 @@
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textSize">27sp</item>
-        <item name="android:backgroundTint">#337DFF</item>
+        <item name="android:backgroundTint">#337DFF</item><!--required color-->
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
     </style>
@@ -44,7 +44,7 @@
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textSize">27sp</item>
-        <item name="android:backgroundTint">#FF3377</item>
+        <item name="android:backgroundTint">#FF3377</item> <!--required color-->
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
     </style>
@@ -56,7 +56,7 @@
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textSize">45sp</item>
-        <item name="android:backgroundTint">#46494B</item>
+        <item name="android:backgroundTint">#5D6D7E</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
     </style>

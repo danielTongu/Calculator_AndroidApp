@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2D30"
+    android:background="#1B2631"
     android:textColor="@android:color/white"
     android:layout_margin=".3dp"
     tools:context=".MainActivity">
@@ -148,7 +148,7 @@
 
         <Button
             android:id="@+id/button0"
-            style="@style/NumericButton"
+            style="@style/NumericButton" android:backgroundTint="#FF8033"
             android:text="0" />
 
         <Button
